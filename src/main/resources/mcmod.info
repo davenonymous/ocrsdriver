@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ocrsdriver",
+  "name": "OC RS Driver",
+  "description": "OpenComputers + Refined Storage = <3",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Davenonymous"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
