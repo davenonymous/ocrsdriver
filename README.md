@@ -86,5 +86,5 @@ while(true) do
     end
 
     os.sleep(5)
-done
+end
 ```
