@@ -8,7 +8,6 @@ Just a toy project :airplane: for my own usage.
 
 - This is currently unrestricted, i.e. you can export items using just a cable - and fast.
   I'll probably restricted this in the future to Interfaces and Export Buses, but for now it is what it is.
-- You can not request crafting jobs at the moment.
 - No Fluid export at the moment.
 
 ## Available Commands
@@ -21,8 +20,12 @@ Just a toy project :airplane: for my own usage.
 | getPatterns()                        | Returns a list of all crafting patterns in the network           |
 | hasPattern(itemstack)                | Returns true if the system has a pattern for the given itemstack |
 | getItems()                           | Returns a list of all itemstacks stored in the network           |
+| getItem(itemstack, cmpMeta, cmpNbt)  | Returns a stack in the network matching the given itemstack      |
 | getFluids()                          | Returns a list of all fluid stacks stored in the network         |
 | extractItem(itemstack, amount, side) | Extracts the given amount of itemstack to the specified side and returns the number of transfered items. |
+| getMissingItems(itemstack, amount)   | Returns a list of all items missing to craft the given itemstack in the given amount |
+| craftItem(itemstack, amount)         | Requests crafting of the specified item in the specified quantity |
+| cancelCrafting(itemstack)            | Cancels all crafting operations for the given itemstack and returns the number of cancelled tasks |
 
 ## Examples
 
@@ -47,4 +50,41 @@ for i,stack in ipairs(rs.getItems()) do
 		end
 	end
 end
+```
+
+### Keep 64 torches and levers in your crafting system
+
+Don't forget to teach a crafter the recipe for torches and levers
+```lua
+local component = require("component")
+local sides = require("sides")
+
+local rs = component.block_refinedstorage_interface
+
+local targetAmount = 64
+local items = {
+    {name = "minecraft:torch"},
+    {name = "minecraft:lever"}
+}
+
+while(true) do
+    for i,stack in ipairs(items) do
+        if(rs.hasPattern(stack)) then
+            local rsStack = rs.getItem(stack)
+
+            local toCraft = targetAmount;
+            if(rsStack ~= nil) then
+                toCraft = toCraft - rsStack.size
+            end
+
+            if(toCraft > 0) then
+                rs.craftItem(stack, toCraft)
+            end
+        else
+            print("Missing pattern for: " .. stack.name)
+        end
+    end
+
+    os.sleep(5)
+done
 ```
