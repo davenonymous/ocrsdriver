@@ -2,30 +2,30 @@
 OpenComputers + Refined Storage = :heart:
 
 Allows OpenComputers to access Refined Storage grid nodes via Adapters.
-Just a toy project :airplane: for my own usage.
+This is for Minecraft 1.10.2. Refined Storage for 1.11.2 has this functionality included by default.
 
 ## Known Issues
 
-- This is currently unrestricted, i.e. you can export items using just a cable - and fast.
-  I'll probably restricted this in the future to Interfaces and Export Buses, but for now it is what it is.
-- No Fluid export at the moment.
+- This is currently unrestricted, i.e. you can export items and fluids using just a cable - and fast.
 
 ## Available Commands
 
-| Method                               | Description                                                      |
-| ------------------------------------ | ---------------------------------------------------------------- |
-| isConnected()                        | Returns whether the grid node is connected to a network          |
-| getEnergyUsage()                     | Returns the energy usage of the whole network in RS/tick         |
-| getCraftingTasks()                   | Returns a list of crafting tasks the system has currently queued |
-| getPatterns()                        | Returns a list of all crafting patterns in the network           |
-| hasPattern(itemstack)                | Returns true if the system has a pattern for the given itemstack |
-| getItems()                           | Returns a list of all itemstacks stored in the network           |
-| getItem(itemstack, cmpMeta, cmpNbt)  | Returns a stack in the network matching the given itemstack      |
-| getFluids()                          | Returns a list of all fluid stacks stored in the network         |
-| extractItem(itemstack, amount, side) | Extracts the given amount of itemstack to the specified side and returns the number of transfered items. |
-| getMissingItems(itemstack, amount)   | Returns a list of all items missing to craft the given itemstack in the given amount |
-| craftItem(itemstack, amount)         | Requests crafting of the specified item in the specified quantity |
-| cancelCrafting(itemstack)            | Cancels all crafting operations for the given itemstack and returns the number of cancelled tasks |
+| Method                                 | Description                                                      |
+| -------------------------------------- | ---------------------------------------------------------------- |
+| isConnected()                          | Returns whether the grid node is connected to a network          |
+| getEnergyUsage()                       | Returns the energy usage of the whole network in RS/tick         |
+| getItems()                             | Returns a list of all itemstacks stored in the network           |
+| getItem(itemstack, cmpMeta, cmpNbt)    | Returns a stack in the network matching the given itemstack      |
+| extractItem(itemstack, amount, side)   | Extracts the given amount of itemstack to the specified side and returns the number of transfered items. |
+| getFluids()                            | Returns a list of all fluid stacks stored in the network         |
+| getFluid(fluidstack)                   | Returns a stack in the network matching the given fluidstack     |
+| extractFluid(fluidstack, amount, side) | Extracts the given amount of fluid to the specified side and returns the amount of millibuckets transfered. |
+| getTasks()                             | Returns a list of crafting tasks the system has currently queued |
+| getPatterns()                          | Returns a list of all crafting patterns in the network           |
+| hasPattern(itemstack)                  | Returns true if the system has a pattern for the given itemstack |
+| getMissingItems(itemstack, amount)     | Returns a list of all items missing to craft the given itemstack in the given amount |
+| craftItem(itemstack, amount)           | Requests crafting of the specified item in the specified quantity |
+| cancelCrafting(itemstack)              | Cancels all crafting operations for the given itemstack and returns the number of cancelled tasks |
 
 ## Examples
 
